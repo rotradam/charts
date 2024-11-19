@@ -1,0 +1,146 @@
+You are an expert developer proficient in TypeScript, Next.js, and Python, specializing in cryptocurrency market analysis and technical indicators.
+
+Code Style and Structure:
+- Write concise, technical TypeScript code with accurate examples
+- Use functional programming patterns; avoid classes
+- Prefer iteration and modularization over code duplication
+- Use descriptive variable names (e.g., isLoading, hasError)
+- Structure files with exported components, helpers, and types
+- Favor named exports for components and functions
+
+TypeScript and Data Handling:
+- Use TypeScript for all frontend code
+- Implement Zod for data validation, especially for API responses
+- Use decimal.js for precise financial calculations
+- Implement proper error handling for API calls and calculations
+
+Chart and Indicator Implementation:
+- Use Lightweight Charts for technical analysis visualization
+- Implement reusable chart components
+- Create modular indicator calculations
+- Ensure real-time data updates via WebSocket
+- Handle chart resize and responsiveness
+
+Python Integration:
+- Use FastAPI for the analysis service
+- Implement TA-Lib for technical indicators
+- Use pandas for data manipulation
+- Ensure proper error handling in Python services
+- Implement WebSocket for real-time data streaming
+
+Project Configuration:
+{
+  "projectType": "next.js",
+  "typescript": true,
+  "recommendations": {
+    "extensions": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss",
+      "ms-python.python",
+      "ms-toolsai.jupyter",
+      "GraphQL.vscode-graphql"
+    ],
+    "settings": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      }
+    }
+  },
+  "conventions": {
+    "naming": {
+      "components": "PascalCase",
+      "hooks": "camelCase",
+      "utils": "camelCase",
+      "types": "PascalCase",
+      "constants": "UPPER_SNAKE_CASE",
+      "indicators": "camelCase",
+      "analysis": "camelCase"
+    },
+    "folders": {
+      "components": "components/",
+      "pages": "app/",
+      "api": "app/api/",
+      "hooks": "lib/hooks/",
+      "utils": "lib/utils/",
+      "types": "types/",
+      "services": "services/",
+      "python": "python/",
+      "indicators": "lib/indicators/",
+      "analysis": "lib/analysis/",
+      "charts": "components/charts/",
+      "websocket": "lib/websocket/"
+    }
+  },
+  "dependencies": {
+    "required": [
+      "next",
+      "react",
+      "react-dom",
+      "typescript",
+      "@types/react",
+      "@types/node",
+      "tailwindcss",
+      "postcss",
+      "autoprefixer",
+      "zustand",
+      "@tanstack/react-query",
+      "lightweight-charts",
+      "websocket",
+      "zod",
+      "decimal.js",  // For precise financial calculations
+      "technicalindicators",  // For technical analysis
+      "ccxt",  // For cryptocurrency exchange integrations
+      "date-fns",  // For date manipulations
+      "superjson"  // For better JSON handling
+    ],
+    "devDependencies": [
+      "eslint",
+      "prettier",
+      "jest",
+      "cypress",
+      "@testing-library/react",
+      "@types/jest",
+      "@types/websocket"
+    ]
+  },
+  "pythonDependencies": {
+    "required": [
+      "fastapi",
+      "uvicorn",
+      "pandas",
+      "numpy",
+      "ta-lib",
+      "scikit-learn",
+      "websockets",
+      "python-binance",  // For Binance API
+      "ccxt",  // For crypto exchange data
+      "pandas-ta",  // For technical analysis
+      "plotly",  // For data visualization
+      "jupyter",  // For analysis notebooks
+      "yfinance"  // For additional market data
+    ]
+  },
+  "dataStructures": {
+    "candlestick": {
+      "required": ["timestamp", "open", "high", "low", "close", "volume"],
+      "optional": ["quoteVolume", "trades"]
+    },
+    "indicator": {
+      "required": ["name", "values", "timestamp"],
+      "optional": ["parameters", "metadata"]
+    }
+  },
+  "apiEndpoints": {
+    "required": [
+      "/api/market/candles",
+      "/api/market/indicators",
+      "/api/analysis/signals",
+      "/api/websocket"
+    ]
+  }
+}
+
+  
