@@ -324,3 +324,58 @@ const data = ResponseSchema.parse(response);
 - Use appropriate stale times
 - Handle background refetching
 - Implement proper retry logic
+
+## Layout and Navigation
+
+### Sidebar Structure
+```typescript
+// components/layout/MainSidebar.tsx
+export function MainSidebar() {
+  const { isCollapsed, toggleSidebar } = useSidebar();
+  // Implementation
+}
+```
+
+### Navigation Best Practices
+1. Use Next.js Link components for client-side navigation
+2. Implement proper active state tracking
+3. Handle nested routes appropriately
+4. Maintain state during navigation
+5. Provide proper loading states
+
+### Theme Management
+1. Default to light theme
+2. Persist theme preference
+3. Provide smooth transitions
+4. Handle system preference changes
+5. Maintain consistent styling
+
+### Layout Guidelines
+- Implement proper responsive breakpoints
+- Handle sidebar state persistence
+- Provide smooth transitions
+- Maintain proper spacing
+- Handle overflow appropriately
+
+### Route Structure
+```
+/market/
+  ├── altcoin-season/  # Altcoin Season Index
+  └── overview/        # Market Overview
+```
+
+### State Management Patterns
+```typescript
+// Proper provider pattern
+export function SidebarProvider({ children }: { children: React.ReactNode }) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  // Implementation
+}
+
+// Proper hook pattern
+export function useSidebar() {
+  const context = useContext(SidebarContext);
+  if (!context) throw new Error("Must be used within provider");
+  return context;
+}
+```

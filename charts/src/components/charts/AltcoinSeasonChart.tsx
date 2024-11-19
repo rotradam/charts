@@ -13,12 +13,15 @@ import {
 } from 'recharts';
 import { format } from 'date-fns';
 import { useAltcoinSeason } from '@/lib/hooks/useAltcoinSeason';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTheme } from "@/components/providers/ThemeProvider";
 
 interface AltcoinSeasonChartProps {
   className?: string;
 }
 
 export const AltcoinSeasonChart = ({ className = '' }: AltcoinSeasonChartProps) => {
+  const { theme } = useTheme();
   const now = Math.floor(Date.now() / 1000);
   const ninetyDaysAgo = now - (90 * 24 * 60 * 60);
 
@@ -66,70 +69,77 @@ export const AltcoinSeasonChart = ({ className = '' }: AltcoinSeasonChartProps) 
   }
 
   return (
-    <div className={`w-full h-[400px] bg-gray-900 rounded-lg border border-gray-700 p-4 ${className}`}>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          data={chartData}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 20,
-          }}
-        >
-          <CartesianGrid 
-            strokeDasharray="3 3" 
-            stroke="rgba(255,255,255,0.1)"
-            vertical={false}
-          />
-          <XAxis 
-            dataKey="date"
-            tickFormatter={(value) => format(new Date(value), 'MMM dd')}
-            stroke="rgba(255,255,255,0.5)"
-          />
-          <YAxis 
-            stroke="rgba(255,255,255,0.5)"
-            domain={[0, 100]}
-          />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: '#1f2937',
-              border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: '4px',
-            }}
-            labelFormatter={(value) => format(new Date(value), 'MMM dd, yyyy')}
-            formatter={(value: number) => [`${value.toFixed(2)}`, 'Index']}
-          />
-          <ReferenceLine
-            y={bitcoinSeasonLine}
-            stroke="rgba(255,255,255,0.3)"
-            strokeDasharray="3 3"
-            label={{
-              value: 'Bitcoin Season',
-              fill: 'rgba(255,255,255,0.5)',
-              position: 'right',
-            }}
-          />
-          <ReferenceLine
-            y={altcoinSeasonLine}
-            stroke="rgba(255,255,255,0.3)"
-            strokeDasharray="3 3"
-            label={{
-              value: 'Altcoin Season',
-              fill: 'rgba(255,255,255,0.5)',
-              position: 'right',
-            }}
-          />
-          <Line
-            type="monotone"
-            dataKey="value"
-            stroke="#f97316"
-            strokeWidth={2}
-            dot={false}
-            activeDot={{ r: 4 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+    <Card className={className}>
+      <CardHeader>
+        <CardTitle>Altcoin Season Index Chart</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="h-[400px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              data={chartData}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 20,
+              }}
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={theme === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}
+                vertical={false}
+              />
+              <XAxis
+                dataKey="date"
+                tickFormatter={(value) => format(new Date(value), "MMM dd")}
+                stroke={theme === "dark" ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)"}
+              />
+              <YAxis
+                stroke={theme === "dark" ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)"}
+                domain={[0, 100]}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: theme === "dark" ? "#1f2937" : "#ffffff",
+                  border: theme === "dark" ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.1)",
+                  borderRadius: "4px",
+                }}
+                labelFormatter={(value) => format(new Date(value), "MMM dd, yyyy")}
+                formatter={(value: number) => [`${value.toFixed(2)}`, "Index"]}
+              />
+              <ReferenceLine
+                y={bitcoinSeasonLine}
+                stroke="rgba(255,255,255,0.3)"
+                strokeDasharray="3 3"
+                label={{
+                  value: 'Bitcoin Season',
+                  fill: 'rgba(255,255,255,0.5)',
+                  position: 'right',
+                }}
+              />
+              <ReferenceLine
+                y={altcoinSeasonLine}
+                stroke="rgba(255,255,255,0.3)"
+                strokeDasharray="3 3"
+                label={{
+                  value: 'Altcoin Season',
+                  fill: 'rgba(255,255,255,0.5)',
+                  position: 'right',
+                }}
+              />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#f97316"
+                strokeWidth={2}
+                dot={false}
+                activeDot={{ r: 4 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
+    </Card>
   );
 }; 

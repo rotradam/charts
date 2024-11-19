@@ -1,5 +1,45 @@
 # Changelog
 
+## [0.2.0] - 2024-11-19
+
+### Added
+- Implemented collapsible sidebar navigation
+- Added light/dark theme support with default light theme
+- Created proper routing structure for market analysis pages
+- Added SidebarProvider for state management
+- Implemented responsive layout with proper transitions
+
+### Technical Details
+
+#### Sidebar Implementation
+- Created custom SidebarProvider for state management
+- Added smooth transitions for collapse/expand
+- Implemented proper nested navigation
+- Added active state tracking for current route
+
+#### Theme Implementation
+- Set default theme to light
+- Added proper theme variables for sidebar
+- Implemented consistent styling across themes
+- Added proper color variables for charts
+
+#### Layout Structure
+- Reorganized routes under market analysis
+- Implemented proper page layouts
+- Added responsive container handling
+- Improved navigation hierarchy
+
+### Bug Fixes
+1. Theme Issues
+   - Fixed theme persistence
+   - Added proper theme variables
+   - Improved color contrast
+
+2. Layout Issues
+   - Fixed sidebar width transitions
+   - Improved responsive behavior
+   - Fixed container center alignment
+
 ## [0.1.0] - 2024-11-19
 
 ### Added
