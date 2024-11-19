@@ -215,3 +215,112 @@ npm run dev
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [React Query Documentation](https://tanstack.com/query/latest/)
 - [TailwindCSS Documentation](https://tailwindcss.com/docs)
+
+## Chart Development Guidelines
+
+### Chart Library Selection
+- Use Recharts for simple time series data
+- Use Lightweight Charts for complex trading views
+- Consider bundle size when adding chart libraries
+
+### Chart Component Structure
+```typescript
+interface ChartProps {
+  data: DataType[];
+  height?: number;
+  width?: number;
+  className?: string;
+}
+
+const Chart = ({ data, height = 400, className = '' }: ChartProps) => {
+  // Implementation
+};
+```
+
+### Chart Best Practices
+1. Always use ResponsiveContainer for responsive charts
+2. Implement proper loading states
+3. Handle empty data states
+4. Provide proper error boundaries
+5. Use proper date formatting for time series
+6. Implement proper tooltip formatting
+7. Consider mobile view constraints
+
+### API Integration Patterns
+
+#### Proxy Pattern
+For external APIs with CORS restrictions:
+```typescript
+// pages/api/[service]/route.ts
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  
+  try {
+    const response = await fetch(
+      `${EXTERNAL_API_URL}?${searchParams}`,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+        next: { revalidate: 300 }
+      }
+    );
+    
+    if (!response.ok) throw new Error('API Error');
+    
+    return NextResponse.json(await response.json());
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Failed to fetch data' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+#### Data Validation
+Always use Zod for runtime validation:
+```typescript
+const ResponseSchema = z.object({
+  data: z.array(z.object({
+    timestamp: z.string(),
+    value: z.string()
+  }))
+});
+
+const data = ResponseSchema.parse(response);
+```
+
+### Common Issues and Solutions
+
+#### CORS Handling
+- Always use API routes for external services
+- Implement proper error handling
+- Add appropriate headers
+- Consider rate limiting
+
+#### Chart Rendering
+- Initialize charts after container is ready
+- Handle window resize properly
+- Clean up chart instances on unmount
+- Use proper TypeScript types
+
+#### Data Transformation
+- Transform data close to the source
+- Use proper date handling
+- Consider timezone issues
+- Handle missing data points
+
+### Performance Optimization
+
+#### Chart Performance
+- Implement proper memoization
+- Limit number of data points
+- Use proper animation settings
+- Handle window resize efficiently
+
+#### Data Fetching
+- Implement proper caching
+- Use appropriate stale times
+- Handle background refetching
+- Implement proper retry logic
