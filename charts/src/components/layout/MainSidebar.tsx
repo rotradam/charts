@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, LineChart, Settings, Activity, BarChart2, ChevronLeft, ChevronRight, Menu } from "lucide-react";
+import { Home, LineChart, Settings, Activity, BarChart2, ChevronLeft, ChevronRight, Menu, PieChart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/providers/SidebarProvider";
@@ -26,6 +26,11 @@ const menuItems = [
         title: "Market Overview",
         url: "/market/overview",
         icon: BarChart2,
+      },
+      {
+        title: "Market Dominance",
+        url: "/market/dominance",
+        icon: PieChart,
       },
     ],
   },

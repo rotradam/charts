@@ -1,5 +1,43 @@
 # Changelog
 
+## [0.3.0] - 2024-11-20
+
+### Added
+- Implemented Market Dominance chart with stacked area visualization
+- Added interactive tooltips for dominance data
+- Created custom tooltip component for better data presentation
+- Added time range filtering (30d, 90d, 1y, all)
+- Implemented proper date formatting with year display
+- Added theme-aware styling for chart components
+
+### Technical Details
+
+#### Market Dominance Implementation
+- Created DominanceChart component with Recharts
+- Added proper data processing and filtering
+- Implemented stacked area chart for BTC, ETH, and Others
+- Added responsive container handling
+- Implemented theme-aware gradients and colors
+
+#### Data Integration
+- Added dominanceService for data fetching
+- Implemented proper Zod validation
+- Added type definitions for dominance data
+- Set up 5-minute revalidation for data
+
+#### UI/UX Improvements
+- Added custom tooltip component
+- Improved date formatting on X-axis
+- Added proper percentage formatting
+- Implemented theme-aware styling
+- Added margin to prevent theme toggle overlap
+
+### Bug Fixes
+1. Fixed tooltip display and interaction
+2. Improved date formatting with year display
+3. Fixed theme toggle button overlap
+4. Corrected gradient opacity issues
+
 ## [0.2.0] - 2024-11-19
 
 ### Added

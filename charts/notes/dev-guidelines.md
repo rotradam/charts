@@ -379,3 +379,59 @@ export function useSidebar() {
   return context;
 }
 ```
+
+### Stacked Area Charts
+When implementing stacked area charts:
+1. Use proper stackId for correct stacking
+2. Implement gradients with proper opacity
+3. Handle theme-aware colors
+4. Ensure proper tooltip interaction
+
+### Custom Tooltips
+When creating custom tooltips:
+```typescript
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload) return null;
+  
+  return (
+    <div className="rounded-lg border p-2 shadow-sm">
+      <div className="grid gap-2">
+        {/* Tooltip content */}
+      </div>
+    </div>
+  );
+};
+```
+
+### Date Formatting
+For X-axis date formatting:
+```typescript
+<XAxis
+  tickFormatter={(value) => {
+    const date = new Date(value)
+    if (date.getMonth() % 3 === 0) {
+      return format(date, "MMM yyyy")
+    }
+    return format(date, "MMM dd")
+  }}
+/>
+```
+
+### Theme Integration
+For theme-aware charts:
+1. Use useTheme hook for color selection
+2. Implement proper gradient opacity
+3. Handle dark/light mode transitions
+4. Use proper contrast ratios
+
+### Layout Considerations
+1. Add proper margins to prevent UI conflicts
+2. Handle responsive container sizing
+3. Implement proper spacing for axes
+4. Consider tooltip positioning
+
+### Performance Optimization
+1. Use React.useMemo for data processing
+2. Implement proper data filtering
+3. Handle large datasets efficiently
+4. Optimize gradient definitions
